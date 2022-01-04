@@ -1,10 +1,26 @@
+require('dotenv').config();
+const mysql = require('mysql2');
 const express = require('express');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+
 // Express middleware
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
+
+// MYSQL CONNECTION
+const db = mysql.createConnection(
+    { 
+    host: process.env.host,
+    user: process.env.user,
+    password: process.env.password,
+    database: process.env.database
+    },
+    console.log('Connected to the election database.')
+);
+db.connect(function(err){})
+
 
 
 
