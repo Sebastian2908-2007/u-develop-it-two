@@ -9,6 +9,7 @@ const app = express();
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
+
 // MYSQL CONNECTION
 const db = mysql.createConnection(
     { 
@@ -17,10 +18,20 @@ const db = mysql.createConnection(
     password: process.env.password,
     database: process.env.database
     },
-    console.log('Connected to the election database.')
+   
 );
-db.connect(function(err){})
+db.connect(function(err){
+    if(err) {
+        console.log('somethings wrong');
+        return;
+    }
+    console.log('connected to election db successfully');
+    
+});
 
+db.query(`SELECT * FROM candidates`, (err,rows) => {
+    console.log(rows);
+});
 
 
 
