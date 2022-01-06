@@ -1,6 +1,15 @@
+DROP TABLE IF EXISTS voters;
 /*Table candidates must be dropped first because of the FK CONSTRAINT that requires the parties table to exist*/
 DROP TABLE IF EXISTS candidates;
 DROP TABLE IF EXISTS parties;
+
+CREATE TABLE voters (
+  id INTEGER AUTO_INCREMENT PRIMARY KEY,
+  first_name VARCHAR(30) NOT NULL,
+  last_name VARCHAR(30) NOT NULL,
+  email VARCHAR(50) NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
 
 /* parties must be created before candidates because of the FK CONSTRAINT that relies on the parties table */
   CREATE TABLE parties(
